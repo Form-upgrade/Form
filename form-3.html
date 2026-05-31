@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FORM — The 90 Day Blueprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;0,900;1,900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#070707;--s1:#0f0f0f;--s2:#161616;--bd:#1e1e1e;--txt:#EFEFEF;--mu:#4a4a4a;--dim:#2a2a2a}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:"Barlow",sans-serif;line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 48px;display:flex;justify-content:space-between;align-items:center;background:rgba(7,7,7,.94);backdrop-filter:blur(24px);border-bottom:1px solid var(--bd)}
+.nav-logo{font-family:"Barlow Condensed",sans-serif;font-size:20px;font-weight:900;letter-spacing:.28em;text-transform:uppercase;color:var(--txt)}
+.nav-right{display:flex;align-items:center;gap:24px}
+.nav-price{font-size:11px;color:var(--mu);letter-spacing:.06em}
+.nav-cta{background:var(--txt);color:#000;padding:10px 22px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;border:none;font-family:"Barlow",sans-serif;transition:all .2s}
+.nav-cta:hover{background:#ccc}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 48px 80px;position:relative;overflow:hidden}
+.hero-noise{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");opacity:.4;pointer-events:none}
+.hero-line{position:absolute;top:0;left:48px;width:1px;height:100%;background:linear-gradient(to bottom,transparent,var(--bd) 20%,var(--bd) 80%,transparent);opacity:.6}
+.hero-line2{position:absolute;top:0;right:48px;width:1px;height:100%;background:linear-gradient(to bottom,transparent,var(--bd) 20%,var(--bd) 80%,transparent);opacity:.6}
+.hero-glow{position:absolute;top:-20%;left:50%;transform:translateX(-50%);width:800px;height:600px;background:radial-gradient(ellipse,rgba(255,255,255,.03) 0%,transparent 70%);pointer-events:none}
+.hero-inner{position:relative;z-index:2;max-width:1400px;margin:0 auto;width:100%}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px}
+.hero-label{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--mu)}
+.hero-num{font-family:"Barlow Condensed",sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--mu);opacity:.5}
+.hero-title{font-family:"Barlow Condensed",sans-serif;font-size:clamp(80px,13vw,200px);font-weight:900;line-height:.85;letter-spacing:-.01em;text-transform:uppercase;margin-bottom:0}
+.hero-title-row{display:flex;align-items:baseline;gap:32px}
+.hero-title-row .ghost{color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.15);font-style:italic}
+.hero-bottom{display:flex;justify-content:space-between;align-items:flex-end;margin-top:48px;padding-top:32px;border-top:1px solid var(--bd)}
+.hero-desc{font-size:14px;color:var(--mu);max-width:380px;line-height:1.7;font-weight:400}
+.hero-cta-group{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.btn-hero{background:var(--txt);color:#000;padding:18px 48px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;border:none;font-family:"Barlow",sans-serif;transition:all .2s;white-space:nowrap}
+.btn-hero:hover{background:#d0d0d0;transform:translateY(-2px)}
+.hero-price-row{display:flex;align-items:center;gap:12px}
+.hero-price{font-family:"Barlow Condensed",sans-serif;font-size:28px;font-weight:900;color:var(--txt);letter-spacing:.04em}
+.hero-price-note{font-size:11px;color:var(--mu);letter-spacing:.04em}
+.hero-stars{font-size:11px;color:var(--mu);letter-spacing:.04em}
+
+/* MARQUEE */
+.marquee-wrap{border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);padding:14px 0;overflow:hidden;background:var(--s1)}
+.marquee-track{display:flex;gap:0;white-space:nowrap;animation:marquee 20s linear infinite}
+.marquee-item{font-family:"Barlow Condensed",sans-serif;font-size:13px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--mu);padding:0 40px}
+.marquee-dot{color:var(--bd);padding:0 8px}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* SECTION BASE */
+.sec{padding:120px 48px;max-width:1400px;margin:0 auto}
+.sec-ey{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--mu);margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.sec-ey::before{content:"";display:block;width:24px;height:1px;background:var(--mu)}
+.sec-title{font-family:"Barlow Condensed",sans-serif;font-size:clamp(44px,6vw,80px);font-weight:900;letter-spacing:.01em;text-transform:uppercase;line-height:.92;margin-bottom:28px}
+.sec-sub{font-size:15px;color:var(--mu);max-width:520px;line-height:1.7}
+
+/* PROBLEM */
+.problem-wrap{background:var(--s1);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd)}
+.problem-inner{padding:120px 48px;max-width:1400px;margin:0 auto}
+.problem-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:80px;background:var(--bd);border:1px solid var(--bd)}
+.prob-item{background:var(--s1);padding:48px 32px;position:relative}
+.prob-item::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:transparent;transition:background .3s}
+.prob-item:hover::before{background:var(--txt)}
+.prob-n{font-family:"Barlow Condensed",sans-serif;font-size:72px;font-weight:900;color:var(--bd);line-height:1;margin-bottom:24px;letter-spacing:-.02em}
+.prob-t{font-size:14px;font-weight:700;color:var(--txt);margin-bottom:10px;letter-spacing:.02em}
+.prob-d{font-size:13px;color:var(--mu);line-height:1.65}
+
+/* MODULES */
+.mods-wrap{padding:120px 48px;max-width:1400px;margin:0 auto}
+.mods-grid{margin-top:80px;display:flex;flex-direction:column;gap:1px;background:var(--bd);border:1px solid var(--bd)}
+.mod{background:var(--bg);padding:48px;display:grid;grid-template-columns:120px 1fr;gap:48px;align-items:start;transition:background .15s;position:relative}
+.mod::after{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:transparent;transition:background .2s}
+.mod:hover{background:var(--s1)}
+.mod:hover::after{background:var(--txt)}
+.mod-n{font-family:"Barlow Condensed",sans-serif;font-size:80px;font-weight:900;color:var(--bd);letter-spacing:-.02em;line-height:1;padding-top:4px}
+.mod-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;gap:20px}
+.mod-t{font-family:"Barlow Condensed",sans-serif;font-size:26px;font-weight:800;color:var(--txt);letter-spacing:.02em;text-transform:uppercase;line-height:1}
+.mod-timeline{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);white-space:nowrap;padding-top:6px}
+.mod-d{font-size:14px;color:var(--mu);line-height:1.7;max-width:680px}
+.mod-tags{margin-top:20px;display:flex;flex-wrap:wrap;gap:6px}
+.mod-tag{font-size:9px;padding:4px 12px;background:var(--s2);color:var(--dim);font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--bd)}
+
+/* STATS */
+.stats-wrap{background:var(--txt);padding:80px 48px}
+.stats-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(0,0,0,.1);border:1px solid rgba(0,0,0,.1)}
+.stat{background:var(--txt);padding:48px 40px;text-align:center}
+.stat-n{font-family:"Barlow Condensed",sans-serif;font-size:80px;font-weight:900;color:#000;letter-spacing:-.02em;line-height:1}
+.stat-l{font-size:11px;font-weight:700;color:rgba(0,0,0,.4);letter-spacing:.12em;text-transform:uppercase;margin-top:10px}
+
+/* TIMELINE */
+.tl-wrap{background:var(--s1);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);padding:120px 48px}
+.tl-inner{max-width:1400px;margin:0 auto}
+.tl-grid{margin-top:80px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bd);border:1px solid var(--bd)}
+.tl-item{background:var(--s1);padding:48px 36px;position:relative;overflow:hidden}
+.tl-item::before{content:"";position:absolute;bottom:0;left:0;right:0;height:2px;background:transparent;transition:background .3s}
+.tl-item:hover::before{background:var(--txt)}
+.tl-phase{font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mu);margin-bottom:16px}
+.tl-time{font-family:"Barlow Condensed",sans-serif;font-size:48px;font-weight:900;color:var(--txt);letter-spacing:-.01em;line-height:1;margin-bottom:20px}
+.tl-t{font-size:14px;font-weight:700;color:var(--txt);margin-bottom:10px}
+.tl-d{font-size:13px;color:var(--mu);line-height:1.65}
+
+/* TESTIMONIALS */
+.testi-wrap{padding:120px 48px;max-width:1400px;margin:0 auto}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:80px;background:var(--bd);border:1px solid var(--bd)}
+.testi{background:var(--bg);padding:48px 40px;position:relative}
+.testi::before{content:"C";font-family:"Barlow Condensed",sans-serif;font-size:120px;font-weight:900;color:var(--bd);position:absolute;top:20px;left:32px;line-height:1;pointer-events:none}
+.testi-text{font-size:15px;color:var(--txt);line-height:1.75;margin-bottom:28px;position:relative;z-index:1;padding-top:40px}
+.testi-divider{width:32px;height:1px;background:var(--bd);margin-bottom:16px}
+.testi-name{font-size:11px;font-weight:700;color:var(--txt);letter-spacing:.1em;text-transform:uppercase}
+.testi-detail{font-size:11px;color:var(--mu);margin-top:4px;letter-spacing:.04em}
+
+/* FAQ */
+.faq-wrap{background:var(--s1);border-top:1px solid var(--bd);padding:120px 48px}
+.faq-inner{max-width:1400px;margin:0 auto}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:80px;background:var(--bd);border:1px solid var(--bd)}
+.faq-item{background:var(--s1);padding:36px 40px;cursor:pointer;transition:background .15s}
+.faq-item:hover{background:var(--s2)}
+.faq-q{font-size:15px;font-weight:600;color:var(--txt);display:flex;justify-content:space-between;align-items:flex-start;gap:20px;letter-spacing:.01em}
+.faq-a{font-size:13px;color:var(--mu);line-height:1.7;margin-top:16px;display:none}
+.faq-item.open .faq-a{display:block}
+.faq-item.open .faq-arr{transform:rotate(45deg)}
+.faq-arr{font-size:22px;color:var(--mu);transition:transform .2s;flex-shrink:0;line-height:1;margin-top:2px}
+
+/* BUY */
+.buy-wrap{min-height:80vh;display:flex;align-items:center;justify-content:center;padding:120px 48px;position:relative;overflow:hidden}
+.buy-glow{position:absolute;bottom:-20%;left:50%;transform:translateX(-50%);width:1000px;height:600px;background:radial-gradient(ellipse,rgba(255,255,255,.05) 0%,transparent 65%);pointer-events:none}
+.buy-inner{position:relative;z-index:2;text-align:center;max-width:800px}
+.buy-ey{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--mu);margin-bottom:24px;display:flex;align-items:center;justify-content:center;gap:12px}
+.buy-ey::before,.buy-ey::after{content:"";display:block;width:40px;height:1px;background:var(--mu)}
+.buy-title{font-family:"Barlow Condensed",sans-serif;font-size:clamp(64px,10vw,120px);font-weight:900;letter-spacing:.01em;text-transform:uppercase;line-height:.88;margin-bottom:32px}
+.buy-sub{font-size:16px;color:var(--mu);max-width:440px;margin:0 auto 48px;line-height:1.7}
+.buy-box{background:var(--s1);border:1px solid var(--bd);padding:48px;max-width:520px;margin:0 auto}
+.buy-box-title{font-family:"Barlow Condensed",sans-serif;font-size:20px;font-weight:800;color:var(--txt);letter-spacing:.1em;text-transform:uppercase;margin-bottom:24px}
+.buy-includes{display:flex;flex-direction:column;gap:10px;margin-bottom:32px}
+.buy-include{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--mu)}
+.buy-include::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--txt);flex-shrink:0}
+.buy-price-row{display:flex;align-items:baseline;gap:12px;margin-bottom:24px}
+.buy-price{font-family:"Barlow Condensed",sans-serif;font-size:72px;font-weight:900;color:var(--txt);letter-spacing:-.02em;line-height:1}
+.buy-price-note{font-size:13px;color:var(--mu)}
+.btn-buy{width:100%;background:var(--txt);color:#000;padding:20px;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;border:none;font-family:"Barlow",sans-serif;transition:all .2s;display:block}
+.btn-buy:hover{background:#d0d0d0;transform:translateY(-2px)}
+.buy-fine{font-size:11px;color:var(--mu);margin-top:16px;letter-spacing:.04em;text-align:center}
+
+/* FOOTER */
+footer{border-top:1px solid var(--bd);padding:40px 48px;display:flex;justify-content:space-between;align-items:center}
+.footer-logo{font-family:"Barlow Condensed",sans-serif;font-size:16px;font-weight:900;letter-spacing:.28em;text-transform:uppercase}
+.footer-txt{font-size:11px;color:var(--mu);letter-spacing:.04em}
+
+/* STICKY */
+.sticky{position:fixed;bottom:0;left:0;right:0;background:rgba(10,10,10,.97);border-top:1px solid var(--bd);padding:14px 48px;display:flex;justify-content:space-between;align-items:center;z-index:99;transform:translateY(100%);transition:transform .3s;backdrop-filter:blur(20px)}
+.sticky.show{transform:translateY(0)}
+.sticky-l{display:flex;align-items:center;gap:20px}
+.sticky-name{font-family:"Barlow Condensed",sans-serif;font-size:16px;font-weight:800;color:var(--txt);letter-spacing:.08em;text-transform:uppercase}
+.sticky-price{font-size:11px;color:var(--mu);letter-spacing:.04em}
+
+@media(max-width:1024px){
+.problem-grid{grid-template-columns:1fr 1fr}
+.stats-inner{grid-template-columns:1fr 1fr}
+.tl-grid{grid-template-columns:1fr 1fr}
+.testi-grid{grid-template-columns:1fr}
+.faq-grid{grid-template-columns:1fr}
+.mod{grid-template-columns:80px 1fr;gap:28px}
+.mod-n{font-size:56px}
+}
+@media(max-width:768px){
+nav{padding:14px 20px}
+.hero{padding:0 20px 60px}
+.hero-line,.hero-line2{display:none}
+.hero-title{font-size:clamp(60px,18vw,100px)}
+.hero-bottom{flex-direction:column;align-items:flex-start;gap:32px}
+.hero-cta-group{align-items:flex-start}
+.sec,.mods-wrap,.testi-wrap,.faq-wrap,.tl-inner,.problem-inner,.buy-wrap{padding:80px 20px}
+footer,.sticky{padding:20px}
+.problem-grid,.stats-inner,.tl-grid{grid-template-columns:1fr}
+.mod{grid-template-columns:1fr}
+.mod-n{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+<svg viewBox="0 0 180 36" height="28" xmlns="http://www.w3.org/2000/svg">
+<text x="2" y="30" font-family="'Barlow Condensed',Impact,sans-serif" font-size="34" font-weight="900" fill="none" stroke="#F2F2F2" stroke-width="1.2" letter-spacing="6">FORM</text>
+</svg>
+</div>
+  <div class="nav-right">
+    <span class="nav-price">The 90 Day Blueprint</span>
+    <button class="nav-cta" onclick="document.getElementById('buy').scrollIntoView({behavior:'smooth'})">Get it — $9.99</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-noise"></div>
+  <div class="hero-line"></div>
+  <div class="hero-line2"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-top">
+      <div class="hero-label">The 90 Day Men's Glow Up System</div>
+      <div class="hero-num">001 / 2026</div>
+    </div>
+    <h1 class="hero-title">
+      <div class="hero-title-row"><span>Become</span><span class="ghost">The</span></div>
+      <div>Man They</div>
+      <div>Notice.</div>
+    </h1>
+    <div class="hero-bottom">
+      <p class="hero-desc">Skin. Body. Style. Grooming. Supplements. The exact system to become visibly more attractive in 90 days — without guessing what to do or wasting money on the wrong things.</p>
+      <div class="hero-cta-group">
+        <div class="hero-price-row">
+          <div class="hero-price">$9.99</div>
+          <div class="hero-price-note">One time · Instant access</div>
+        </div>
+        <button class="btn-hero" onclick="document.getElementById('buy').scrollIntoView({behavior:'smooth'})">Get The Blueprint Now</button>
+        <div class="hero-stars">★★★★★ &nbsp; Built for men done being average</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Skincare</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Looksmaxxing</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Grooming</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Body</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Supplements</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Style</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">90 Days</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">$9.99</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Skincare</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Looksmaxxing</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Grooming</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Body</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Supplements</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Style</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">90 Days</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">$9.99</span><span class="marquee-dot">·</span>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<div class="problem-wrap">
+<div class="problem-inner">
+  <div class="sec-ey">The problem</div>
+  <div class="sec-title">Most men have<br>no idea where<br>to actually start</div>
+  <div class="problem-grid">
+    <div class="prob-item">
+      <div class="prob-n">01</div>
+      <div class="prob-t">No skincare routine at all</div>
+      <div class="prob-d">Or using the wrong products for their skin type and wondering why nothing works after months of trying. Acne persists. Nothing changes.</div>
+    </div>
+    <div class="prob-item">
+      <div class="prob-n">02</div>
+      <div class="prob-t">Generic gym advice that does not fit</div>
+      <div class="prob-d">Following random programs not built for their body type, age, or actual goal. Putting in the work and seeing almost nothing for it.</div>
+    </div>
+    <div class="prob-item">
+      <div class="prob-n">03</div>
+      <div class="prob-t">Style with zero direction</div>
+      <div class="prob-d">Spending money on clothes without knowing what works for their body, their budget, or the image they are actually trying to build.</div>
+    </div>
+    <div class="prob-item">
+      <div class="prob-n">04</div>
+      <div class="prob-t">Supplements with no understanding</div>
+      <div class="prob-d">Wasting money on things that do not work or taking the right things at the wrong times. No one explains what actually does what.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- MODULES -->
+<div class="mods-wrap">
+  <div class="sec-ey">What is inside</div>
+  <div class="sec-title">Six systems.<br>One transformation.</div>
+  <div class="sec-sub">Every section is specific, actionable, and built around real results. You get the exact routine, the exact products, the exact timeline. No guessing.</div>
+  <div class="mods-grid">
+    <div class="mod">
+      <div class="mod-n">01</div>
+      <div>
+        <div class="mod-header">
+          <div class="mod-t">Skincare — clear skin in 6 to 8 weeks</div>
+          <div class="mod-timeline">6–8 weeks</div>
+        </div>
+        <div class="mod-d">Your complete morning and night routine built for your skin type. Every product listed by name with the exact price. Acne-prone, oily, dry — all covered. No guessing, no wasting money on things that do not work for your specific situation.</div>
+        <div class="mod-tags"><span class="mod-tag">Morning routine</span><span class="mod-tag">Night routine</span><span class="mod-tag">Product list with prices</span><span class="mod-tag">Budget breakdown</span></div>
+      </div>
+    </div>
+    <div class="mod">
+      <div class="mod-n">02</div>
+      <div>
+        <div class="mod-header">
+          <div class="mod-t">Looksmaxxing — sharper jaw in 3 to 6 months</div>
+          <div class="mod-timeline">3–6 months</div>
+        </div>
+        <div class="mod-d">Mewing, chewing, posture correction, mouth tape — the daily habits with real documented results. Realistic week-by-week timelines for every area so you know exactly what to expect and when.</div>
+        <div class="mod-tags"><span class="mod-tag">Mewing protocol</span><span class="mod-tag">Jaw routine</span><span class="mod-tag">Posture system</span><span class="mod-tag">Week-by-week timelines</span></div>
+      </div>
+    </div>
+    <div class="mod">
+      <div class="mod-n">03</div>
+      <div>
+        <div class="mod-header">
+          <div class="mod-t">Grooming — the details most men overlook</div>
+          <div class="mod-timeline">Week 1</div>
+        </div>
+        <div class="mod-d">Eyebrows, beard, nails, nose hair, teeth whitening, oil pulling. The complete weekly checklist with exact products and costs. The small things people notice about you without knowing why they notice them.</div>
+        <div class="mod-tags"><span class="mod-tag">Weekly checklist</span><span class="mod-tag">Teeth whitening</span><span class="mod-tag">One-time kit list</span><span class="mod-tag">Product prices</span></div>
+      </div>
+    </div>
+    <div class="mod">
+      <div class="mod-n">04</div>
+      <div>
+        <div class="mod-header">
+          <div class="mod-t">Body — workout plan built for your goal</div>
+          <div class="mod-timeline">8–12 weeks</div>
+        </div>
+        <div class="mod-d">Build muscle, lose fat, or improve sport performance. A real structured program with weekly schedules, exercise breakdowns, nutrition targets, and meal plans. Built for your goal — not a generic template.</div>
+        <div class="mod-tags"><span class="mod-tag">5-day split</span><span class="mod-tag">Weekly schedule</span><span class="mod-tag">Nutrition targets</span><span class="mod-tag">Full meal plan</span></div>
+      </div>
+    </div>
+    <div class="mod">
+      <div class="mod-n">05</div>
+      <div>
+        <div class="mod-header">
+          <div class="mod-t">Supplements — what actually works and why</div>
+          <div class="mod-timeline">Start week 1</div>
+        </div>
+        <div class="mod-d">Every supplement explained in plain language — what it does, why it works, when to take it, what brand to buy, and exactly how much it costs per month. No marketing. No filler. Just what the research actually shows.</div>
+        <div class="mod-tags"><span class="mod-tag">Full stack</span><span class="mod-tag">Timing guide</span><span class="mod-tag">Brand recommendations</span><span class="mod-tag">Monthly cost breakdown</span></div>
+      </div>
+    </div>
+    <div class="mod">
+      <div class="mod-n">06</div>
+      <div>
+        <div class="mod-header">
+          <div class="mod-t">Style — look expensive at any budget</div>
+          <div class="mod-timeline">Week 1–2</div>
+        </div>
+        <div class="mod-d">What to wear for your body type. The exact pieces to buy first. How to build a complete wardrobe from $200. Streetwear, clean minimal, or luxury — full brand guides and budget breakdowns for every path.</div>
+        <div class="mod-tags"><span class="mod-tag">Body type guide</span><span class="mod-tag">$200 starter wardrobe</span><span class="mod-tag">Brand guide</span><span class="mod-tag">Budget breakdown</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-wrap">
+  <div class="stats-inner">
+    <div class="stat"><div class="stat-n">6–8</div><div class="stat-l">Weeks to clear skin</div></div>
+    <div class="stat"><div class="stat-n">90</div><div class="stat-l">Day full transformation</div></div>
+    <div class="stat"><div class="stat-n">$85</div><div class="stat-l">Monthly supplement cost</div></div>
+    <div class="stat"><div class="stat-n">$9.99</div><div class="stat-l">One time investment</div></div>
+  </div>
+</div>
+
+<!-- TIMELINE -->
+<div class="tl-wrap">
+  <div class="tl-inner">
+    <div class="sec-ey">The roadmap</div>
+    <div class="sec-title">Exactly what happens<br>and when</div>
+    <div class="tl-grid">
+      <div class="tl-item">
+        <div class="tl-phase">Phase 01</div>
+        <div class="tl-time">Week 1</div>
+        <div class="tl-t">Foundation</div>
+        <div class="tl-d">Start your morning skincare routine. Order your supplement stack. Begin mewing every waking hour. Clean out your wardrobe. These are the daily habits that compound into everything else over 90 days.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-phase">Phase 02</div>
+        <div class="tl-time">Weeks 2–4</div>
+        <div class="tl-t">First changes</div>
+        <div class="tl-d">Skin starts clearing. Posture becomes more automatic. Teeth noticeably whiter. Body changes starting to show. People notice something is different about you — even if they cannot say exactly what.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-phase">Phase 03</div>
+        <div class="tl-time">Month 2</div>
+        <div class="tl-t">Momentum</div>
+        <div class="tl-d">Skin significantly clearer. Body changes visible. Style upgraded. Grooming habits fully automatic. The version of you from day one looks like a different person in comparison.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-phase">Phase 04</div>
+        <div class="tl-time">Month 3</div>
+        <div class="tl-t">Form</div>
+        <div class="tl-d">Clear skin, sharper jawline, better posture, improved physique, upgraded style, whiter teeth. Ninety days of consistent daily habits compounded into a visibly different version of you. This is what FORM looks like.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="testi-wrap">
+  <div class="sec-ey">Results</div>
+  <div class="sec-title">What people<br>are saying</div>
+  <div class="testi-grid">
+    <div class="testi">
+      <div class="testi-text">I had no idea where to start with skincare. Within 6 weeks my skin was the clearest it had been since middle school. The product list alone was worth significantly more than $9.99. I wish I had this two years ago.</div>
+      <div class="testi-divider"></div>
+      <div class="testi-name">Jake M.</div>
+      <div class="testi-detail">Started with skincare · Week 6</div>
+    </div>
+    <div class="testi">
+      <div class="testi-text">The supplement section explained everything I had been confused about for years. I was taking half of these at the wrong time. The timing guide alone changed my recovery completely. Creatine is not just for pre-workout.</div>
+      <div class="testi-divider"></div>
+      <div class="testi-name">Marcus T.</div>
+      <div class="testi-detail">Started with supplements · Month 2</div>
+    </div>
+    <div class="testi">
+      <div class="testi-text">Spent $200 on the exact wardrobe from the budget upgrade section. Three people asked if I had changed something within the first week. Best $200 I have ever spent on clothes. The fit over brand rule is real.</div>
+      <div class="testi-divider"></div>
+      <div class="testi-name">Devon R.</div>
+      <div class="testi-detail">Started with style · Week 3</div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="faq-wrap">
+  <div class="faq-inner">
+    <div class="sec-ey">Questions</div>
+    <div class="sec-title">Everything you<br>need to know</div>
+    <div class="faq-grid">
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Do I need to follow every section? <span class="faq-arr">+</span></div>
+        <div class="faq-a">No. Each section is completely standalone. Start with the one that matters most to you right now and add the others when you are ready. Most people start with skincare or supplements because those produce the fastest visible results.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">How much does following the plan actually cost? <span class="faq-arr">+</span></div>
+        <div class="faq-a">The skincare starter routine is about $96 for the first month. The supplement stack runs about $85 per month. The budget style wardrobe is $180 one time. The grooming kit is $57 one time. Every cost is broken down to the exact dollar inside the guide.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">How fast will I actually see results? <span class="faq-arr">+</span></div>
+        <div class="faq-a">Teeth start whitening in 2 to 3 weeks. Skin starts clearing in 4 to 6 weeks. Jawline definition shows at 3 to 6 months with consistent daily habits. Body changes depend on your starting point but are visible within 6 to 8 weeks of following the workout program.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Is this only for people starting from zero? <span class="faq-arr">+</span></div>
+        <div class="faq-a">No. The guide works whether you already have some routines or none at all. Most people who already do some of these things find the sections they have been missing or doing wrong. The supplement timing section in particular is valuable even for people who already supplement regularly.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">What format is the guide in? <span class="faq-arr">+</span></div>
+        <div class="faq-a">Instant digital download. You get access immediately after purchase through Whop. The guide is clean, easy to navigate, and designed to be implemented the same day you buy it. You can start within an hour of purchasing.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Why is it only $9.99? <span class="faq-arr">+</span></div>
+        <div class="faq-a">Because the goal is to get this in front of as many people as possible. At $9.99 it is an impulse purchase — no one has to think about it twice. The information inside is worth significantly more than that to anyone who actually applies it.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BUY -->
+<section class="buy-wrap" id="buy">
+  <div class="buy-glow"></div>
+  <div class="buy-inner">
+    <div class="buy-ey">Get started today</div>
+    <div class="buy-title">One decision.<br>90 days.<br>Different man.</div>
+    <p class="buy-sub">The version of you that turns heads is 90 days of consistent daily habits away. The guide costs less than a coffee.</p>
+    <div class="buy-box">
+      <div class="buy-box-title">FORM — The 90 Day Blueprint</div>
+      <div class="buy-includes">
+        <div class="buy-include">Complete skincare routine with exact products and prices</div>
+        <div class="buy-include">Looksmaxxing system with realistic timelines</div>
+        <div class="buy-include">Full grooming checklist and product guide</div>
+        <div class="buy-include">Personalized workout program and meal plan</div>
+        <div class="buy-include">Full supplement stack explained in plain language</div>
+        <div class="buy-include">Style guide and budget wardrobe breakdown</div>
+      </div>
+      <div class="buy-price-row">
+        <div class="buy-price">$9.99</div>
+        <div class="buy-price-note">One time · Instant access</div>
+      </div>
+      <button class="btn-buy" onclick="window.open('https://whop.com/checkout/plan_XXCUIjW9pGyDu','_blank')">Get The Blueprint Now</button>
+      <div class="buy-fine">Instant digital download · No subscription · No hidden fees</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">
+<svg viewBox="0 0 140 30" height="20" xmlns="http://www.w3.org/2000/svg">
+<text x="2" y="24" font-family="'Barlow Condensed',Impact,sans-serif" font-size="26" font-weight="900" fill="none" stroke="#F2F2F2" stroke-width="1" letter-spacing="5">FORM</text>
+</svg>
+</div>
+  <div class="footer-txt">The 90 Day Blueprint</div>
+  <div class="footer-txt">© 2026 FORM. All rights reserved.</div>
+</footer>
+
+<div class="sticky" id="stickyBar">
+  <div class="sticky-l">
+    <span class="sticky-name">
+<svg viewBox="0 0 120 26" height="18" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;margin-right:10px">
+<text x="2" y="22" font-family="'Barlow Condensed',Impact,sans-serif" font-size="22" font-weight="900" fill="none" stroke="#F2F2F2" stroke-width="1" letter-spacing="4">FORM</text>
+</svg>
+The 90 Day Blueprint</span>
+    <span class="sticky-price">One time payment · Instant digital access</span>
+  </div>
+  <button class="nav-cta" onclick="document.getElementById('buy').scrollIntoView({behavior:'smooth'})">Get it — $9.99</button>
+</div>
+
+<script>
+window.addEventListener('scroll',function(){
+  var s=document.getElementById('stickyBar');
+  if(window.scrollY>500){s.classList.add('show')}else{s.classList.remove('show')}
+});
+</script>
+</body>
+</html>
